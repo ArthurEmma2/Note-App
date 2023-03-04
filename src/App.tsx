@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import NewNote from "./components/NewNote";
 import { Container } from "react-bootstrap";
 import Note from "./Note";
+import Edit from "./Edit";
 
 export type RawNote = {
   id: string;
@@ -81,7 +82,7 @@ const App = () => {
           }
         />
         <Route path="/:id" element={<NoteLayout notes={noteWithTags} />}>
-          <Route path="edit" element={<h1>Edit</h1>} />
+          <Route path="edit" element={<Edit />} />
           <Route index element={<Note />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
