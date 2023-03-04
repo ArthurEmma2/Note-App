@@ -14,7 +14,7 @@ function Note() {
             <Stack
               gap={1}
               direction="horizontal"
-              className="justify-content-center flex-wrap"
+              className="flex-wrap"
             >
               {note.tags.map((tag) => (
                 <Badge className="text-truncate" key={tag.id}>
