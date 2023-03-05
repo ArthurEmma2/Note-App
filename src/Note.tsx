@@ -30,6 +30,9 @@ function Note() {
                 <Link to={`/${note.id}/edit`}>
                     <Button variant="primary">Edit</Button>     
                 </Link>
+                <Link to={`/${note.id}/edit`}>
+                    <Button variant="primary">Edit</Button>     
+                </Link>
              
                 
                     <Button variant="primary">Delete</Button>     
