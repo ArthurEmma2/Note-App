@@ -35,7 +35,7 @@ function Note() {
                 </Link>
              
                 
-                    <Button variant="outline-primary">Delete</Button>     
+                    <Button variant="outline-danger">Delete</Button>     
               
               
             </Stack>
