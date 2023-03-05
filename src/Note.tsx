@@ -30,12 +30,12 @@ function Note() {
                 <Link to={`/${note.id}/edit`}>
                     <Button variant="primary">Edit</Button>     
                 </Link>
-                <Link to={`/${note.id}/edit`}>
-                    <Button variant="primary">Edit</Button>     
+                <Link to='/'>
+                    <Button variant="secondary">Back</Button>     
                 </Link>
              
                 
-                    <Button variant="primary">Delete</Button>     
+                    <Button variant="outline-primary">Delete</Button>     
               
               
             </Stack>
