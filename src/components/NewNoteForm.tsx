@@ -13,7 +13,7 @@ type NoteFormProps = {
    availableTags: Tag[]
 
   
-}
+}& Partial<NoteData>
 
 export const NewNoteForm = ({onSubmit, onAddTag, availableTags,}: NoteFormProps) => {
     const titleRef = useRef<HTMLInputElement>(null)

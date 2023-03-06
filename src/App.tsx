@@ -67,15 +67,18 @@ const App = () => {
   }
 
   function onUpadateNote(id:string, {tags, ...data}: NoteData){
-    setNotes(function (prevNotes) {
-        return prevNotes.map(note => {
-          if (note.id === id) {
-            return;
-          }
-        });
+    setNotes((prevNotes) => {
+      return prevNotes.map(note =>{
+       if(note.id === id) {
+          return    { ...note, ...data, tagIds: tags.map((tag) => tag.id) }
+       } else{
+        return note
+       }
       })
+    });
   }
-  }
+
+
 
   return (
     <Container className="my-4">
