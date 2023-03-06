@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Col, Row, Stack, Button, Form, Card, Badge } from "react-bootstrap";
+import { Col, Row, Stack, Button, Form, Card, Badge, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { v4 as uuidV4 } from "uuid";
 import { Tag } from "../App";
@@ -18,9 +18,17 @@ export type SimplifiedNote = {
   tags: Tag[];
 };
 
+
+type ModalProps = {
+  show: boolean
+  availableTags: Tag[]
+  handleClose: ()=> void
+}
+
 function NoteList({ availableTags, notes }: NoteListProps) {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const filteredNote = useMemo(() => {
     return notes.filter((note) => {
@@ -46,7 +54,7 @@ function NoteList({ availableTags, notes }: NoteListProps) {
             <Link to="/new">
               <Button variant="primary">Create</Button>
             </Link>
-            <Button variant="outline-secondary">Edit Tags</Button>
+            <Button variant="outline-secondary" onClick={() => setIsModalOpen(true)}>Edit Tags</Button>
           </Stack>
         </Col>
       </Row>
@@ -95,6 +103,7 @@ function NoteList({ availableTags, notes }: NoteListProps) {
         ))}
         <Col></Col>
       </Row>
+      <EditTagModal show={false} availableTags= {availableTags}  handleClose={() => setIsModalOpen(true)}/>
     </>
   );
 }
@@ -122,3 +131,36 @@ function NoteCard({ id, title, tags }: SimplifiedNote) {
 }
 
 export default NoteList;
+
+
+function EditTagModal({availableTags, handleClose, show}: ModalProps){
+  return <Modal show={show} onHide={handleClose}>
+    <Modal.Header closeButton>
+      <Modal.Title>Edit tags</Modal.Title>
+      <Modal.Body>
+        <form>
+          <Stack gap={2}>
+          {
+  availableTags.map(tag => {
+    return(
+      <Row key={tag.id}>
+      <Col key={tag.id}>
+      <Form.Control type="text" value={tag.label}  />
+      </Col>
+      <Col xs="auto">
+        <Button variant="outline-danger"><i className="fa fa-times" aria-hidden="true"></i></Button>
+      </Col>
+    </Row>
+    )
+  
+  })
+}
+          </Stack>
+        </form>
+      </Modal.Body>
+    </Modal.Header>
+  </Modal>
+
+}
+
+
