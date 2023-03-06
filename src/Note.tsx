@@ -1,11 +1,15 @@
 import React from "react";
 import { useNote } from "./NoteLayout";
 import { Row, Col, Badge, Stack, Button } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
+type NoteProps = {
+  OnDeleteBtn: (id:string) => void
+}
 
-function Note() {
+function Note({ OnDeleteBtn}: NoteProps) {
+  const navigate = useNavigate()
   const note = useNote();
   return (
     <>
@@ -37,7 +41,12 @@ function Note() {
                 </Link>
              
                 
-                    <Button variant="outline-danger">Delete</Button>     
+                    <Button variant="outline-danger" 
+
+                    onClick={()=> OnDeleteBtn(note.id)
+                     
+                    
+                    }>Delete</Button>     
               
               
             </Stack>
