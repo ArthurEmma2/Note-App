@@ -66,6 +66,11 @@ const App = () => {
     setTags((prev) => [...prev, tag]);
   }
 
+
+  function DeleteBtn () {
+    
+  }
+
   function onUpadateNote(id:string, {tags, ...data}: NoteData){
     setNotes((prevNotes) => {
       return prevNotes.map(note =>{
