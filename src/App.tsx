@@ -12,6 +12,8 @@ import NewNote from "./components/NewNote";
 import { Container } from "react-bootstrap";
 import Note from "./Note";
 import Edit from "./Edit";
+import EditNote from './components/EditNote';
+
 
 export type RawNote = {
   id: string;
@@ -64,6 +66,17 @@ const App = () => {
     setTags((prev) => [...prev, tag]);
   }
 
+  function onUpadateNote(id:string, {tags, ...data}: NoteData){
+    setNotes(function (prevNotes) {
+        return prevNotes.map(note => {
+          if (note.id === id) {
+            return;
+          }
+        });
+      })
+  }
+  }
+
   return (
     <Container className="my-4">
       <Routes>
@@ -82,7 +95,9 @@ const App = () => {
           }
         />
         <Route path="/:id" element={<NoteLayout notes={noteWithTags} />}>
-          <Route path="edit" element={<Edit />} />
+          <Route path="edit" element={<EditNote 
+            availableTags={tags}
+            onSubmit={onUpadateNote} onAddTag={addTag} />} />
           <Route index element={<Note />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
